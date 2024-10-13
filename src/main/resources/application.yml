@@ -12,27 +12,31 @@ spring:
           uri: http://localhost:8081
           predicates:
             - Path=/auth/**
+
         - id: player-service
           uri: http://localhost:8082
           predicates:
             - Path=/players/**
+
         - id: game-service
           uri: http://localhost:8083
           predicates:
             - Path=/games/**
+
         - id: card-service
           uri: http://localhost:8084
           predicates:
             - Path=/cards/**
+
         - id: session-service
           uri: http://localhost:8085
           predicates:
             - Path=/sessions/**
+
         - id: notification-service
           uri: http://localhost:8086
           predicates:
             - Path=/notifications/**
-
       default-filters:
         - TokenRelay
 
@@ -50,6 +54,12 @@ logging:
 
 jwt:
   secret: hKfYbV1L1LwzFX2Yw8hEHyTj3E4xjV5SyJ6eR3Jg+oE=
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
 
 # Eureka
 # eureka:

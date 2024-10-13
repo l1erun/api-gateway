@@ -27,20 +27,20 @@ public class SecurityConfig {
 
     @Value("${jwt.secret}")
     private String secretKey;
+
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/auth/**").permitAll()
-                        .pathMatchers("/sessions/**").permitAll()
-                        .anyExchange().authenticated()
-//                        .anyExchange().permitAll()
+                                .pathMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**", "/sessions",
+                                        "/sessions/start/").permitAll()
+                                .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtDecoder(jwtDecoder()))
                 )
-        .cors(Customizer.withDefaults());
+                .cors(Customizer.withDefaults());
         return http.build();
     }
 
