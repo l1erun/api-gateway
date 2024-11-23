@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -34,7 +35,7 @@ public class SecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
                                 .pathMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**", "/sessions",
-                                        "/sessions/start").permitAll()
+                                        "/sessions/start", "/games/**", "/ws/**", "/gameSession").permitAll()
                                 .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2

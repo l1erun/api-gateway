@@ -16,6 +16,8 @@ public class GatewayConfig {
                         .uri("http://localhost:8082"))
                 .route("game-service", r -> r.path("/games/**")
                         .uri("http://localhost:8083"))
+                .route("game-service-session", r -> r.path("/gameSession/**")
+                        .uri("http://localhost:8083"))
                 .route("card-service", r -> r.path("/cards/**")
                         .uri("http://localhost:8084"))
                 .route("session-service", r -> r.path("/sessions/**")
